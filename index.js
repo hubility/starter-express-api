@@ -20,9 +20,11 @@ app.all('/', (req, res) => {
 })
 app.all('/api/v1/prediction/862b889c-9750-4fa6-8484-fe5aa3435246', (req, res) => {
     console.log("Just got a request!")
+    /*
     query({"question": "Hey, how are you?"}).then((response) => {
         res.send(response);
     });
+    */
     res.send('Hola API')
 })
 app.listen(process.env.PORT || 3000)
