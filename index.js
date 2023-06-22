@@ -32,7 +32,7 @@ async function query(data,res) {
 }
 
 // Add middleware for http proxying 
-const apiProxy = proxy('/', { target: 'http://34.16.139.61:3000' });
+const apiProxy =new proxy('/', { target: 'http://34.16.139.61:3000' });
 app.use('/', apiProxy);
 
 /*
