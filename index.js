@@ -2,6 +2,7 @@ const express = require('express')
 var request = require('request');
 const app = express()
 const axios = require("axios");
+const proxy = require('http-proxy-middleware');
 
 async function query(data,res) {
 
@@ -30,10 +31,15 @@ async function query(data,res) {
    // return result;
 }
 
+// Add middleware for http proxying 
+const apiProxy = proxy('/', { target: 'http://34.16.139.61:3000' });
+app.use('/', apiProxy);
+
+/*
 app.all('/', function(req,res) {
     //modify the url in any way you want
-    var newurl = 'http://google.com/';
-    request("http://34.16.139.61:3000/api/v1/prediction/862b889c-9750-4fa6-8484-fe5aa3435246").pipe(res);
+    var newurl = 'http://34.16.139.61:3000/api/v1/prediction/862b889c-9750-4fa6-8484-fe5aa3435246';
+    request(newurl).pipe(res);
   });
 /*
 app.all('/', (req, res) => {
