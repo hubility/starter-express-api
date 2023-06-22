@@ -2,7 +2,8 @@ const express = require('express')
 
 const app = express()
 const axios = require("axios");
-const proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 
 async function query(data,res) {
 
@@ -32,8 +33,12 @@ async function query(data,res) {
 }
 
 // Add middleware for http proxying 
+/*
 const apiProxy =new proxy('/', { target: 'http://34.16.139.61:3000' });
 app.use('/', apiProxy);
+*/
+
+app.use('/', createProxyMiddleware({ target: 'http://34.16.139.61:3000', changeOrigin: true }));
 
 /*
 app.all('/', function(req,res) {
