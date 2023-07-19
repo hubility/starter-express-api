@@ -4,6 +4,15 @@ const app = express()
 const axios = require("axios");
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
+
 
 async function query(data,res) {
 
